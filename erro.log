@@ -1,0 +1,2 @@
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'calendario.evento' doesn't exist[2024-02-16 01:33:02] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'calendario.evento' doesn't exist
+[2024-02-16 01:33:19] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'calendario.evento' doesn't exist

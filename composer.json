@@ -1,0 +1,17 @@
+{
+    "name": "anderson/calendario",
+    "description": "calendário ministerial",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anderson\\Calendario\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anderson Nogueira"
+        }
+    ]
+}
