@@ -1,0 +1,25 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de log
+*.log
+
+# Dependências
+node_modules/
+vendor/git s
+
+# IDEs e editores
+.vscode/
+.idea/
+
+# Arquivos temporários
+*.tmp
+*.swp
+
+# Arquivos sensíveis
+.env
+bd/conexao.php
+bd/calendario.sql
+bd/conexaoLocal
+bd/conexaoWeb
