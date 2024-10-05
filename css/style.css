@@ -124,6 +124,18 @@ text-align: left;
     transform: translateX(11%);
 }
 
+#lista_pdf:hover::after{
+    content: "Salvar em pdf";
+    position: absolute;
+    z-index: 1;
+    background: #333;
+    color: white;
+    border-radius: 10px;
+    white-space: nowrap;
+    padding: 4px;
+    transform: translateX(11%);
+}
+
 #home:hover::after {
     content: "Página Inicial";
     position: absolute;

@@ -20,14 +20,11 @@ include 'include/authSection.php'?>
 
 <body>
   <div class="menu_lateral">
-    <div class="container_menu">
-      <!-- Ícone do Menu Hambúrguer -->
-      <!-- <div id="icone-menu">
-        &#9776;
-      </div> -->
+  <div class="container_menu">
       <a href="listarAgenda.php" id="lista_agenda"><i class='bx bx-book-open'></i></a>
-      <a href="listarPregacao.php" id="lista_pregacao"><i class='bx bx-bible' ></i></a>
-      <a href="logout.php" id="logout"><i class='bx bx-log-in'></i></a>
+      <a href="listarPregacao.php" id="lista_pregacao"><i class='bx bx-bible'></i></a>
+      <a href="#" onclick="gerarPDF()" class="btn btn" id="lista_pdf"><i class='bx bxs-file-pdf'></i></a>
+      <a href="pesquisaPregacao.php" id="lista_pregacao"><i class='bx bx-search' ></i></a>
     </div>
   </div>
   <header>

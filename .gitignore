@@ -24,3 +24,5 @@ bd/calendario.sql
 bd/conexaoLocal
 bd/conexaoWeb
 vendor
+composer.json
+composer.lock

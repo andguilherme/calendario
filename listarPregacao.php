@@ -11,7 +11,7 @@ $pregacoes = obterPregacoesPorMes($conn, $mes);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
@@ -20,27 +20,45 @@ $pregacoes = obterPregacoesPorMes($conn, $mes);
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="script/geraPdf.js"></script>
 </head>
 
 <body>
   <div class="menu_lateral">
-    <div class="container_menu">
-      <!-- Ícone do Menu Hambúrguer -->
-      <!-- <div id="icone-menu">
-        &#9776;
-      </div> -->
+  <div class="container_menu">
       <a href="index.php" id="home"><i class='bx bx-home'></i></a>
       <a href="listarAgenda.php" id="lista_agenda"><i class='bx bx-book-open'></i></a>
       <a href="listarPregacao.php" id="lista_pregacao"><i class='bx bx-bible'></i></a>
+      <a href="#" onclick="gerarPDF()" class="btn btn" id="lista_pdf"><i class='bx bxs-file-pdf'></i></a>
+      <a href="pesquisaPregacao.php" id="lista_pregacao"><i class='bx bx-search' ></i></a>
     </div>
   </div>
+
   <header class="kbc_lista">
     <h2>Calendário Ministerial</h2>
-    <hr>
 
     <div class="assnt">
       <span style="font-family: 'Marck Script', cursive; font-size: 28pt">Anderson </span>
     </div>
+
+    <!-- <div class="col-12 text-end">
+      <?php
+      header('Content-Type: text/html; charset=utf-8');
+
+      // Definir o local para português do Brasil
+      setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'portuguese');
+
+      // Exibir a data de hoje por extenso
+      echo strftime('%A, %d de %B de %Y');
+      ?>
+    </div> -->
+
   </header>
 
 
@@ -81,30 +99,36 @@ $pregacoes = obterPregacoesPorMes($conn, $mes);
       <?php
       foreach ($pregacoes as $pregacao) {
         extract($pregacao);
-    
+
         $dataFormatada = new DateTime($data_pregacao);
         $horaFormatada = new DateTime($horario_pregacao);
         $numeroDiaSemana = $dataFormatada->format('N');
-    
+
         $diasSemana = [
-            'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'
+          'Segunda-feira',
+          'Terça-feira',
+          'Quarta-feira',
+          'Quinta-feira',
+          'Sexta-feira',
+          'Sábado',
+          'Domingo'
         ];
-    
+
         $diaSemana = ($numeroDiaSemana >= 1 && $numeroDiaSemana <= 7) ? $diasSemana[$numeroDiaSemana - 1] : 'Data Inválida';
-    
+
         $formattedDate = $dataFormatada->format('d/m/Y');
         $formattedTime = $horaFormatada->format('H:i');
-    
+
         echo "<tr>";
         echo "<td> {$diaSemana} - {$formattedDate}</td>";
-        
+
         // Verifica se o dia da semana é quarta-feira
         if ($numeroDiaSemana != 3) {
-            echo "<td id='col15'>{$formattedTime} - " . (($formattedTime < '12:00' && $formattedTime > '06:00') ? 'manhã' : 'noite') . "</td>";
+          echo "<td id='col15'>{$formattedTime} - " . (($formattedTime < '12:00' && $formattedTime > '06:00') ? 'manhã' : 'noite') . "</td>";
         } else {
-            echo "<td id='col15'>{$formattedTime}</td>";
+          echo "<td id='col15'>{$formattedTime}</td>";
         }
-        
+
         echo "<td>{$titulo_pregacao}</td>";
         echo "<td>{$conteudo}</td>";
         echo "
@@ -115,8 +139,8 @@ $pregacoes = obterPregacoesPorMes($conn, $mes);
               ";
         echo "</tr>";
         echo "<tr><td colspan='4'><hr></td></tr>";
-    }
-    
+      }
+
       ?>
     </table>
   </div>
@@ -125,7 +149,7 @@ $pregacoes = obterPregacoesPorMes($conn, $mes);
   </div>
 </body>
 <footer>
-<br><br><br>
+  <br><br><br>
 </footer>
 
 </html>
